@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Valentine's Day Special</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div class="bgoverlay">
+        <div class="container">
+            <span class="ico">
+                <span class="ico2"></span>
+                <span class="title">Click Me</span>
+            </span>
+            <div class="endtext">
+                <h1>I Love You</h1>
+                <h2>Wanna be my valentine?</h2>
+                <img src="https://i.pinimg.com/originals/97/22/b5/9722b5dfd0c67126c1147105c91920df.gif"
+                    alt="Valentine's Day GIF" class="valentines-gif" id="valentine-gif">
+                <div class="button-container">
+                    <button class="answer-btn" id="yes-btn">Yes</button>
+                    <button class="answer-btn" id="no-btn">No</button>
+                </div>
+                <h3>-Kamen</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       $(document).ready(function () {
+    $('#no-btn').addClass('no-hover'); // Initially disable hover
+
+    $('.title').click(function () {
+        $('.container').addClass('open');
+        $('#no-btn').removeClass('no-hover'); // Enable hover after clicking "Click Me"
+    });
+
+    $('.close').click(function () {
+        $('.container').removeClass('open');
+    });
+
+    $('#no-btn').hover(function () {
+        if (!$(this).hasClass('no-hover')) { // Only proceed if no-hover class is removed
+            var margin = 20; // Margin from edges
+            var windowHeight = $(window).height() - $(this).outerHeight() - margin;
+            var windowWidth = $(window).width() - $(this).outerWidth() - margin;
+
+            var newTop = Math.random() * windowHeight + margin;
+            var newLeft = Math.random() * windowWidth + margin;
+
+            $(this).css({
+                'position': 'fixed', // Using 'fixed' to keep it within the viewport
+                'top': newTop + 'px',
+                'left': newLeft + 'px'
+            });
+        }
+    });
+
+    $('#yes-btn').click(function () {
+        // Changes the GIF src to the new URL for the new GIF
+        $('#valentine-gif').attr('src', 'https://media4.giphy.com/media/lo63VEKfQjLVE6rWSb/giphy.gif');
+
+        // Update the message
+        $('.endtext h1').text('YAYYYY!!!!! I happy ');
+        // Optionally, update or hide other elements as needed
+        $('.endtext h2').hide(); // Hides the "Wanna be my valentine?" text
+        $('.button-container').hide(); // Hides the buttons
+    });
+});
+    </script>
+</body>
+
+</html>
